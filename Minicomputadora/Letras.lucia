@@ -1,0 +1,124 @@
+// Clase Letras
+// Representa la sección de juegos de Letras
+// Creada por Sebastián Jiménez Arrieta (Firma: SJA) y __
+
+class Letras {
+
+    // Propiedades
+    let dictABC: dict<string, string> = {};
+
+    // Constructor de la clase
+    constructor()
+    {
+        // Firma: SJA
+        this.dictABC = 
+        {
+            "A": "Animal",
+            "B": "Bosque",
+            "C": "Casa",
+            "D": "Dado",
+            "E": "Escoba",
+            "F": "Faro",
+            "G": "Gato",
+            "H": "Hielo",
+            "I": "Isla",
+            "J": "Juguete",
+            "K": "Koala",
+            "L": "Luna",
+            "M": "Mamut",
+            "N": "Nube",
+            "O": "Oso",
+            "P": "Parque",
+            "Q": "Queso",
+            "R": "Rio",
+            "S": "Sol",
+            "T": "Tren",
+            "U": "Uva",
+            "V": "Viento",
+            "W": "Waffle",
+            "X": "Xilófono",
+            "Y": "Yoyo",
+            "Z": "Zanahoria"
+        };
+    }
+    
+    // Métodos y funciones (internos)
+    func getLetras (): void // Muestra todas las letras del diccionario
+    {
+        // Firma: SJA
+        let acumuladorTexto: string = "";
+    
+        for (i in dictABC)
+        {
+            acumuladorTexto += i + "  "; 
+        }
+
+        print(acumuladorTexto);
+    }
+
+    func getPalabra (llave: string): string // Retorna una palabra buscando por llave (indice)
+    {
+        // Firma: SJA
+        return dictABC[llave];
+    }
+    
+    // Métodos y Funciones para Main (Externos)
+    func JugarBosqueLetras (): void 
+    {
+        // Firma: SJA
+        
+        // Es mejor usar string para opciones, debido a que usar un 
+        // int abre la posibilidad de excepciones por conversión de tipos
+        let opcion: string = ""; 
+        let letraSeleccionada: string = "";
+
+        try
+        {
+            do 
+            {
+                print("\n=====> Bosque de Letras <=====\n");
+                
+                opcion = input("¿Desea Continuar? \n[1] Si \n[2] No \n");
+            
+                if (opcion == "1")
+                {
+
+                    do
+                    {
+                        print("\nSeleccione una letra del abecedario.");
+                        this.getLetras();
+    
+                        letraSeleccionada = str(input()).capitalize();
+    
+                        if(!letraSeleccionada.is_alpha())
+                        {
+                            print("\nError: No ha ingresado una letra del abecedario.");
+                        }
+
+                    } while (!letraSeleccionada.is_alpha());
+
+                    print("\nHa seleccionado la letra: " + letraSeleccionada);
+                    print(letraSeleccionada + " - " + getPalabra(letraSeleccionada) + "\n");
+
+                    print("¡Bien hecho!\n");
+                    
+                    return;
+                }
+                else if (opcion == "2")
+                {
+                    print("\nVolviendo al menú principal...\n");
+                }
+                else 
+                {
+                    print("\nError: No ha seleccionado ninguna de las opciones disponibles, intente de nuevo.\n");
+                }
+                        
+            } while (opcion != "2");
+        }
+        catch (Err)
+        {
+            print(Err);
+        }
+        
+    }
+    
