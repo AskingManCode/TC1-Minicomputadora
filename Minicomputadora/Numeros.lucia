@@ -1,0 +1,39 @@
+// Clase Numeros
+// Representa la sección de juegos de Números
+// Creada por Javier Picado
+
+class Numeros {
+
+    constructor()
+    {
+        // Constructor vacío
+    }
+
+    func JugarAdivinaNumero(): void
+    {
+        let numeroSecreto: int = 7;
+        let respuesta: string = "";
+
+        try
+        {
+            print("\n=====> Adivina el Número <=====\n");
+            print("Estoy pensando en un número del 1 al 10.");
+
+            respuesta = input("Digite el número: ");
+
+            if (respuesta == str(numeroSecreto))
+            {
+                print("\n¡Felicidades, ganaste!\n");
+            }
+            else
+            {
+                print("\nIncorrecto, inténtalo nuevamente.\n");
+                print("El número correcto era: " + str(numeroSecreto) + "\n");
+            }
+        }
+        catch (Err)
+        {
+            print(Err);
+        }
+    }
+}
