@@ -1,0 +1,345 @@
+// Clase Numeros
+// Representa la sección de juegos de Números
+
+class Numeros {
+
+    // diccionario para el juego de Mayor y Menor
+    let preguntas: dict<int, string>; 
+    
+    constructor()
+    {
+        this.preguntas = { 1: "¿Cuál es mayor?", 2 : "¿Cuál es menor?" };
+    }
+
+    func generarNumero(): int
+    {
+        return random(1,100);
+    }
+
+    // Javier Picado 
+
+    func JugarAdivinaNumero(): void
+    {
+    let respuesta: string = "";
+
+    try
+    {
+        print("\n=====> Adivina el Número <=====\n");
+        print("Observa la secuencia y adivina el número oculto.\n");
+
+        // Secuencia 1
+        print("Secuencia 1:");
+        print("2  4  ?  8");
+
+        respuesta = input("¿Cuál número falta?: ");
+
+        if (respuesta == "6")
+        {
+            print("\n¡Felicidades, ganaste!\n");
+        }
+        else
+        {
+            print("\nIncorrecto, inténtalo nuevamente.");
+            print("La respuesta correcta era 6.\n");
+        }
+
+        // Secuencia 2
+        print("Secuencia 2:");
+        print("5  ?  15  20");
+
+        respuesta = input("¿Cuál número falta?: ");
+
+        if (respuesta == "10")
+        {
+            print("\n¡Felicidades, ganaste!\n");
+        }
+        else
+        {
+            print("\nIncorrecto, inténtalo nuevamente.");
+            print("La respuesta correcta era 10.\n");
+        }
+
+        // Secuencia 3
+        print("Secuencia 3:");
+        print("?  3  4  5");
+
+        respuesta = input("¿Cuál número falta?: ");
+
+        if (respuesta == "2")
+        {
+            print("\n¡Felicidades, ganaste!\n");
+        }
+        else
+        {
+            print("\nIncorrecto, inténtalo nuevamente.");
+            print("La respuesta correcta era 2.\n");
+        }
+
+        print("GRACIAS POR JUGAR");
+    }
+    catch (Err)
+    {
+        print(Err);
+    }
+
+    }
+
+    // función para actividad 1 de Números
+    func OrdenaLosNumeros(): void
+    {
+        // declaración de lista que contendrá números aleatorios
+        let numeros : list<int> = [];
+
+        // ciclo para generar cuatro números aleatorios
+        for (let i:int =0; i < 4; i++)
+        {
+           numeros.append(generarNumero());
+        }
+
+        //  creación de lista con numeros ordenados
+        let numsOrdenados : list<int> = [];
+        let numerosRespaldo : list<int> = [];
+        numerosRespaldo = numeros.copy();
+        numsOrdenados.append(max(max(numerosRespaldo[0], numerosRespaldo[1]), max(numerosRespaldo[2], numerosRespaldo[3])));
+        numerosRespaldo.remove(numsOrdenados[0]);
+        numsOrdenados.append(max(max(numerosRespaldo[0], numerosRespaldo[1]), numerosRespaldo[2]));
+        numerosRespaldo.remove(numsOrdenados[1]);
+        numsOrdenados.append(max(numerosRespaldo[0], numerosRespaldo[1]));
+        numerosRespaldo.remove(numsOrdenados[2]);
+        numsOrdenados.append(numerosRespaldo[0]);
+
+        // mensaje de inicio
+        print("\n=====> Ordena Los Números <=====\nEn esta actividad se te mostrarán 4 números y tendrás que ordenarlos de mayor a menor.\n¿Listo?\n");
+
+        // inicio de ciclo de juego
+        let continuar : bool = true;
+        do{ 
+            // bloque para el manejo de errores
+            try
+            {
+                // usuario ingresa else número mayor
+                print("Ordena de mayor a menor estos números\n${numeros[0]} ${numeros[1]} ${numeros[2]} ${numeros[3]}\n");
+                let mayor : int = int(input("¿Cuál es el número mayor? "));
+
+                // valida que usuario digito un número
+                if(!str(mayor).is_numeric())
+                {
+                    print("Lo sentimos, pero solo se permite que escribas números.");
+                }
+                else{
+                    // verificar si respuesta es correcta
+                    if(mayor == numsOrdenados[0])
+                    {   
+                        //eliminar numero de lista de numeros desordenados
+                        for (num in numeros){if (num == numsOrdenados[0]) { numeros.remove(num); }}
+
+                        //usuario ingresó siguiente número mayor
+                        print("¡Vas por buen camino!\n");
+
+                        do{
+                           try{
+                                print("\nOrdena de mayor a menor estos números\n${numsOrdenados[0]} ${numeros[0]} ${numeros[1]} ${numeros[2]}\n");
+                                mayor = int(input("¿Cuál es el siguiente mayor, el que le sigue a ${numsOrdenados[0]}?"));
+        
+                                // valida que usuario digito un número
+                                if(!str(mayor).is_numeric())
+                                {
+                                    print("Lo sentimos, pero solo se permite que escribas números.");
+                                }
+                                else{
+                                    // verificar si respuesta es correcta
+                                    if(mayor == numsOrdenados[1])
+                                    {   
+                                        //eliminar numero de lista de numeros desordenados
+                                        for (num in numeros){if (num == numsOrdenados[1]) { numeros.remove(num); }}
+                
+                                        //usuario ingresó siguiente número mayor
+                                        print("¡Lo estás haciendo muy bien!\n");
+                                        do{
+                                            try{
+                                                // último ordenamiento
+                                                print("\nOrdena de mayor a menor estos números\n${numsOrdenados[0]} ${numsOrdenados[1]} ${numeros[0]} ${numeros[1]}\n");
+                                                mayor = int(input("¿Cuál es el siguiente mayor, el que le sigue a ${numsOrdenados[1]}?"));
+        
+                                                 // valida que sea número
+                                                if(!str(mayor).is_numeric())
+                                                {
+                                                    print("Lo sentimos, pero solo se permite que escribas números.");
+                                                }
+                                                else{
+                                                    // verificar si respuesta es correcta
+                                                    if (mayor == numsOrdenados[2]){
+                                                        // terminó de ordenar la secuencia, se le muestra ordenada y se le felicita
+                                                        print("\nEnhorabuena. ¡Lo has logrado!\n La secuencia ordenada quedaría así: ${numsOrdenados[0]} ${numsOrdenados[1]} ${numsOrdenados[2]} ${numsOrdenados[3]}\n");
+        
+                                                        // acabar ciclos
+                                                        continuar = false;
+                                                        
+                                                    }else{
+                                                        print("Inténtalo nuevamente.");
+                                                    }
+                                                }
+                                             }
+                                             catch (error)
+                                             {
+                                                print("Lo sentimos, pero solo se permite que escribas números.\n");
+                                             }
+                                        } while (continuar == true);
+                                    }
+                                    else{
+                                        print("Inténtalo nuevamente.");
+                                    }
+                                }
+                            }
+                            catch (error)
+                            {
+                                print("Lo sentimos, pero solo se permite que escribas números.");
+                            }
+                        }while (continuar == true);
+                    }
+                    else{
+                        print("Inténtalo nuevamente.");
+                    }
+                }
+            }
+            catch (error)
+            {
+                print("Lo sentimos, pero solo se permite que escribas números.");
+            }
+        }while(continuar == true);
+        
+        //mensaje final
+        print("GRACIAS POR JUGAR");
+    }
+
+    //función para actividad 2 de Números
+    func MayorYMenor() : void
+    {
+        // declaración de lista de numeros aleatorios
+        let numeros : list<int> = [];
+
+        // ciclo para generar tres números aleatorios
+        for (let i:int =0; i < 3; i++)
+        {
+           numeros.append(generarNumero());
+        }
+
+        // identificación de mayor y menor
+        const menor : int = min(min(numeros[0], numeros[1]), numeros[2]);
+        const mayor : int = max(max(numeros[0], numeros[1]), numeros[2]);
+        
+        print("\n=====> Mayor Y Menor <=====\nEn esta actividad se te mostrarán 3 números y tendrás que responder cuál es número mayor o cuál el menor, según la pregunta que te aparezca.\n¿Listo?");
+
+        // inicio de ciclo de juego
+        let continuar : bool = true;
+
+        // determinar pregunta
+        let pregunta : int = random(1,2);
+        
+        do{ 
+            //manejo de errores
+            try
+            {
+                // impresión de números aleatorios
+                print("\nDe los siguientes tres números: ${numeros[0]} ${numeros[1]} ${numeros[2]}");
+
+                // captura de respuesta
+                let respuesta : int = int(input("${preguntas[pregunta]}"));
+
+                //validar que sea número
+                if(!str(respuesta).is_numeric())
+                {
+                    print("Lo sentimos, pero solo se permite que escribas números.");
+                }
+                else
+                {
+                    if (pregunta == 1)
+                    {
+                        //pregunta cuál es mayor
+                        //compara si respuesta es correcta
+                        if (mayor == respuesta)
+                        {
+                            print("¡Bien hecho! Has ganado.");
+    
+                            // terminar ciclo
+                            continuar = false;
+                        }
+                        else
+                        {
+                            print("Respuesta incorrecta. Inténtalo nuevamente.");
+                        }
+                    }
+                    else
+                    {
+                        //pregunta cuál es menor
+                        //compara si respuesta es correcta
+                        if (menor == respuesta)
+                        {
+                            print("\n¡Bien hecho! Has ganado.");
+    
+                            //terminar ciclo
+                            continuar = false;
+                        }
+                        else
+                        {
+                            print("\nRespuesta incorrecta. Inténtalo nuevamente.");
+                        }
+                    }
+                }
+            }
+            catch (error)
+            {
+                print("Lo sentimos, pero solo se permite que escribas números.");
+            }
+            
+        } while (continuar == true);
+
+        //mensaje final
+        print("GRACIAS POR JUGAR");
+    }
+
+
+    func juegosNumeros() : void 
+    {   
+
+        // variable para capturar opcion
+        let opcion : int = 0;
+        
+        //ciclo para que se repite el menú de Números hasta que el usuario escoja salir
+        while(opcion != 4)
+        {
+            //MENU PRINCIPAL
+            print("====================");
+            print("===                          ===");
+            print("=             NUMEROS            =");
+            print("===                          ===");
+            print("====================");
+
+            print("\n1. Ordena los números\n2. Mayor y menor\n3. Adivina el número\n");
+
+            //leer opcion que escogió usuario
+            try{
+                opcion = int(input("Elige una opción (1-4): "));
+    
+                // para cada juego
+                switch (opcion){
+                    case 1:
+                        OrdenaLosNumeros();
+                    case 2:
+                        MayorYMenor();
+                    case 3:
+                        JugarAdivinaNumero();
+                    case 4:
+                        print("Regresando al menú principal...");
+                    default:
+                        print("Debes ingresar una de las opciones establecidas.");
+                }
+            }
+            catch (error)
+            {
+                print("Solo se admiten números para elegir alguna opción.");
+            }
+        }
+        
+    }
+}

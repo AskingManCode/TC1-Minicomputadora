@@ -1,0 +1,43 @@
+// Clase Logica
+// Representa la sección de juegos de Lógica
+// Creada por Javier Picado
+
+class Logica {
+
+    constructor()
+    {
+        // Constructor vacío
+    }
+
+    func JugarCualSobra(): void
+    {
+        let opcion: string = "";
+
+        try
+        {
+            print("\n=====> ¿Cuál sobra? <=====\n");
+            print("Seleccione la opción que no pertenece al grupo:\n");
+
+            print("[1] Perro");
+            print("[2] Gato");
+            print("[3] Carro");
+            print("[4] Conejo");
+
+            opcion = input("\nDigite una opción: ");
+
+            if (opcion == "3")
+            {
+                print("\n¡Felicidades, ganaste!\n");
+                print("Correcto, 'Carro' sobra porque no es un animal.\n");
+            }
+            else
+            {
+                print("\nIncorrecto, inténtalo nuevamente.\n");
+            }
+        }
+        catch (Err)
+        {
+            print(Err);
+        }
+    }
+}
