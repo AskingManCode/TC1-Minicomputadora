@@ -4,15 +4,15 @@
 
 class Letras {
 
-    // Propiedades
+    // PROPIEDADES
     let dictABC: dict<string, string> = {};
 
-    // Constructor de la clase
-    constructor()
-    {
+    // CONSTRUCTOR DE LA CLASE
+    constructor() 
+    { 
         // Firma: SJA
         this.dictABC = 
-        {
+        { 
             "A": "Animal",
             "B": "Bosque",
             "C": "Casa",
@@ -39,30 +39,44 @@ class Letras {
             "X": "Xilófono",
             "Y": "Yoyo",
             "Z": "Zanahoria"
-        };
-    }
+        }; 
+    } 
+
     
-    // Métodos y funciones (internos)
+    // MÉTODOS Y FUNCIONES DE CLASE (INTERNOS)
     func getLetras (): void // Muestra todas las letras del diccionario
     {
         // Firma: SJA
         let acumuladorTexto: string = "";
-    
-        for (i in dictABC)
+        
+        for (key in dictABC.keys())
         {
-            acumuladorTexto += i + "  "; 
+            acumuladorTexto += key + "  "; 
         }
 
         print(acumuladorTexto);
     }
 
-    func getPalabra (llave: string): string // Retorna una palabra buscando por llave (indice)
+    func getPalabra (llave: string): string // Retorna una palabra buscando por llave
     {
         // Firma: SJA
         return dictABC[llave];
     }
+
+    func getListaPalabras (): list<string>
+    {
+        // Firma: SJA
+        let listaPalabras: list<string> = [];
+        
+        for (palabra in dictABC.values())
+        {
+            listaPalabras.append(palabra);
+        }
+
+        return listaPalabras;
+    }
     
-    // Métodos y Funciones para Main (Externos)
+    // MÉTODOS Y FUNCIONES PARA MAIN (EXTERNOS)
     func JugarBosqueLetras (): void 
     {
         // Firma: SJA
@@ -113,12 +127,14 @@ class Letras {
                     print("\nError: No ha seleccionado ninguna de las opciones disponibles, intente de nuevo.\n");
                 }
                         
-            } while (opcion != "2");
+            } 
+            while (opcion != "2");
         }
         catch (Err)
         {
-            print(Err);
+            print("\n" + Err);
         }
         
     }
     
+}

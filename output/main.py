@@ -7,18 +7,12 @@ class Letras:
 
     def getLetras(self):
         acumuladorTexto = ''
-        for key in self.dictABC.keys():
-            acumuladorTexto += (key + '  ')
+        for i in self.dictABC:
+            acumuladorTexto += (i + '  ')
         print(acumuladorTexto)
 
     def getPalabra(self, llave):
         return self.dictABC[llave]
-
-    def getListaPalabras(self):
-        listaPalabras = []
-        for palabra in self.dictABC.values():
-            listaPalabras.append(palabra)
-        return listaPalabras
 
     def JugarBosqueLetras(self):
         opcion = ''
@@ -51,24 +45,21 @@ class Letras:
 
     def JugarCompletaPalabra(self):
         opcion = ''
-        numeroRandom = 0
-        listaPalabras = []
-        palabraRandom = ''
         try:
             while True:
                 print('\n=====> Completa la Palabra <=====\n')
                 opcion = input('¿Desea Continuar? \n[1] Si \n[2] No \n')
                 if (opcion == '1'):
-                    listaPalabras = self.getListaPalabras()
-                    numeroRandom = random.randint(0, (len(listaPalabras) - 1))
-                    palabraRandom = listaPalabras[numeroRandom]
-                    print((len(listaPalabras) - 1))
+                    numeroRandom = random.randint(0, 26)
+                    print(numeroRandom)
                     return
                 elif (opcion == '2'):
                     print('\nVolviendo al menú principal...\n')
                 else:
                     print('\nError: No ha seleccionado ninguna de las opciones disponibles, intente de nuevo.\n')
-                if not ((opcion != '2')):
+                if not (True):
                     break
         except Exception as Err:
             print(('\n' + Err))
+letras = Letras()
+letras.JugarCompletaPalabra()
