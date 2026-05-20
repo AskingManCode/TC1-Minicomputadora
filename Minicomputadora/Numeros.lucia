@@ -15,33 +15,73 @@ class Numeros {
     {
         return random(1,100);
     }
-    
+
+    // Javier Picado 
+
     func JugarAdivinaNumero(): void
     {
-        let numeroSecreto: int = 7;
-        let respuesta: string = "";
+    let respuesta: string = "";
 
-        try
+    try
+    {
+        print("\n=====> Adivina el Número <=====\n");
+        print("Observa la secuencia y adivina el número oculto.\n");
+
+        // Secuencia 1
+        print("Secuencia 1:");
+        print("2  4  ?  8");
+
+        respuesta = input("¿Cuál número falta?: ");
+
+        if (respuesta == "6")
         {
-            print("\n=====> Adivina el Número <=====\n");
-            print("Estoy pensando en un número del 1 al 10.");
-
-            respuesta = input("Digite el número: ");
-
-            if (respuesta == str(numeroSecreto))
-            {
-                print("\n¡Felicidades, ganaste!\n");
-            }
-            else
-            {
-                print("\nIncorrecto, inténtalo nuevamente.\n");
-                print("El número correcto era: " + str(numeroSecreto) + "\n");
-            }
+            print("\n¡Felicidades, ganaste!\n");
         }
-        catch (Err)
+        else
         {
-            print(Err);
+            print("\nIncorrecto, inténtalo nuevamente.");
+            print("La respuesta correcta era 6.\n");
         }
+
+        // Secuencia 2
+        print("Secuencia 2:");
+        print("5  ?  15  20");
+
+        respuesta = input("¿Cuál número falta?: ");
+
+        if (respuesta == "10")
+        {
+            print("\n¡Felicidades, ganaste!\n");
+        }
+        else
+        {
+            print("\nIncorrecto, inténtalo nuevamente.");
+            print("La respuesta correcta era 10.\n");
+        }
+
+        // Secuencia 3
+        print("Secuencia 3:");
+        print("?  3  4  5");
+
+        respuesta = input("¿Cuál número falta?: ");
+
+        if (respuesta == "2")
+        {
+            print("\n¡Felicidades, ganaste!\n");
+        }
+        else
+        {
+            print("\nIncorrecto, inténtalo nuevamente.");
+            print("La respuesta correcta era 2.\n");
+        }
+
+        print("GRACIAS POR JUGAR");
+    }
+    catch (Err)
+    {
+        print(Err);
+    }
+
     }
 
     // función para actividad 1 de Números
