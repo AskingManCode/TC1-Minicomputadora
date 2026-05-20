@@ -137,6 +137,56 @@ class Letras {
         
     }
 
-    // Hola 
+    func JugarLetraIntrusa(): void {
+        print("\n===== LETRA INTRUSA =====");
+        print("Se muestran 4 letras. Una no está en orden alfabético.");
+        print("Identifica cuál es la letra intrusa.\n");
+
+        let rondas: list<list<string>> = [
+            ["A", "B", "D", "C"],
+            ["E", "G", "F", "H"],
+            ["M", "N", "P", "O"]
+        ];
+        let intrusas: list<int> = [2, 1, 2];
+        let puntaje: int = 0;
+
+        for (let ronda: int = 0; ronda < 3; ronda++) {
+            print("\n--- Ronda ${ronda + 1} ---");
+            let letras: list<string> = rondas[ronda];
+            for (let i: int = 0; i < len(letras); i++) {
+                print("${i + 1}. ${letras[i]}");
+            }
+
+            let opcion: int = 0;
+            let valido: bool = false;
+            while (!valido) {
+                try {
+                    opcion = int(input("¿Cuál es el número de la letra intrusa (1-4)? "));
+                    if (opcion >= 1 && opcion <= 4) {
+                        valido = true;
+                    } else {
+                        print("Número inválido. Elige 1, 2, 3 o 4.");
+                    }
+                } catch (error) {
+                    print("Error: Debes ingresar un número.");
+                }
+            }
+            if (opcion - 1 == intrusas[ronda]) {
+                print("¡Correcto! La intrusa era '${letras[intrusas[ronda]]}'.");
+                puntaje = puntaje + 1;
+            } else {
+                print("Incorrecto. Inténtalo nuevamente.");
+            }
+        }
+
+        print("\n=== FIN DEL JUEGO ===");
+        print("Acertaste ${puntaje} de 3 rondas.");
+        if (puntaje == 3) {
+            print("¡Felicidades, ganaste!");
+        } else {
+            print("Sigue practicando.");
+        }
+    }
 
 }
+
