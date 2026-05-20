@@ -1,0 +1,54 @@
+// src/Juegos/queGrande.lucia
+// Juego asignado a Franco
+
+func queGrande(): void {
+    print("\n===== ¡QUÉ GRANDE! YO SOY ESTE =====");
+    print("En cada ronda verás 3 animales. Elige el más grande.\n");
+
+    let conjuntos: list<list<string>> = [
+        ["Perro", "Gato", "Elefante"],
+        ["Ratón", "Caballo", "Conejo"],
+        ["Hormiga", "Ballena", "Mosca"]
+    ];
+    let correctosIndex: list<int> = [2, 1, 1];
+    let puntaje: int = 0;
+
+    for (let ronda: int = 0; ronda < 3; ronda++) {
+        print("\n--- Ronda ${ronda + 1} ---");
+        let animales: list<string> = conjuntos[ronda];
+        let correctoIdx: int = correctosIndex[ronda];
+
+        for (let i: int = 0; i < len(animales); i++) {
+            print("${i + 1}. ${animales[i]}");
+        }
+
+        let opcion: int = 0;
+        let valido: bool = false;
+        while (!valido) {
+            try {
+                opcion = int(input("¿Cuál es el animal más grande (1-3)? "));
+                if (opcion >= 1 && opcion <= 3) {
+                    valido = true;
+                } else {
+                    print("Número inválido. Elige 1, 2 o 3.");
+                }
+            } catch (error) {
+                print("Error: Debes ingresar un número.");
+            }
+        }
+        if (opcion - 1 == correctoIdx) {
+            print("¡Correcto! El más grande es '${animales[correctoIdx]}'.");
+            puntaje = puntaje + 1;
+        } else {
+            print("Incorrecto. El más grande era '${animales[correctoIdx]}'.");
+        }
+    }
+
+    print("\n=== FIN DEL JUEGO ===");
+    print("Acertaste ${puntaje} de 3 rondas.");
+    if (puntaje == 3) {
+        print("¡Felicidades, ganaste!");
+    } else {
+        print("¡Sigue practicando!");
+    }
+}
