@@ -41,6 +41,7 @@ Diagrama de Clases
 <img width="1536" height="1024" alt="Diagrama de Minicomputadoras" src="https://github.com/user-attachments/assets/536f45e9-a415-4797-99df-97a6fcff3b24" />
 
 Diagrama de Casos de Uso
+<img width="1440" height="1960" alt="image" src="https://github.com/user-attachments/assets/c13ff5e5-099e-4a9e-8db7-3f14a03177d0" />
 
 
 Mejoras para una versión 2.0
