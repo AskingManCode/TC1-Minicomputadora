@@ -58,15 +58,23 @@ func mostrarMenuJuegos(): void {
 func leerOpcion(minimo: int, maximo: int): int {
     let opcion: int = -1;
     let valido: bool = false;
+
     while (!valido) {
         let entrada: string = input("👉 Elige una opción (${minimo}-${maximo}): ");
-        opcion = int(entrada);
-        if (opcion >= minimo && opcion <= maximo) {
-            valido = true;
-        } else {
-            print("⚠️  Opción no válida. Por favor elige entre ${minimo} y ${maximo}.");
+
+        try {
+            opcion = int(entrada);
+
+            if (opcion >= minimo && opcion <= maximo) {
+                valido = true;
+            } else {
+                print("⚠️  Opción no válida. Por favor elige entre ${minimo} y ${maximo}.");
+            }
+        } catch (error) {
+            print("⚠️  Error: Debes ingresar un número. Intenta de nuevo.");
         }
     }
+
     return opcion;
 }
 

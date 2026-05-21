@@ -297,49 +297,5 @@ class Numeros {
         //mensaje final
         print("GRACIAS POR JUGAR");
     }
-
-
-    func juegosNumeros() : void 
-    {   
-
-        // variable para capturar opcion
-        let opcion : int = 0;
-        
-        //ciclo para que se repite el menú de Números hasta que el usuario escoja salir
-        while(opcion != 4)
-        {
-            //MENU PRINCIPAL
-            print("====================");
-            print("===                          ===");
-            print("=             NUMEROS            =");
-            print("===                          ===");
-            print("====================");
-
-            print("\n1. Ordena los números\n2. Mayor y menor\n3. Adivina el número\n");
-
-            //leer opcion que escogió usuario
-            try{
-                opcion = int(input("Elige una opción (1-4): "));
-    
-                // para cada juego
-                switch (opcion){
-                    case 1:
-                        OrdenaLosNumeros();
-                    case 2:
-                        MayorYMenor();
-                    case 3:
-                        JugarAdivinaNumero();
-                    case 4:
-                        print("Regresando al menú principal...");
-                    default:
-                        print("Debes ingresar una de las opciones establecidas.");
-                }
-            }
-            catch (error)
-            {
-                print("Solo se admiten números para elegir alguna opción.");
-            }
-        }
-        
-    }
+       
 }

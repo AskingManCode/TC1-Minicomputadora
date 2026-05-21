@@ -433,11 +433,14 @@ def leerOpcion(minimo, maximo):
     valido = False
     while (not valido):
         entrada = input((((('👉 Elige una opción (' + str(minimo)) + '-') + str(maximo)) + '): '))
-        opcion = int(entrada)
-        if ((opcion >= minimo) and (opcion <= maximo)):
-            valido = True
-        else:
-            print((((('⚠️  Opción no válida. Por favor elige entre ' + str(minimo)) + ' y ') + str(maximo)) + '.'))
+        try:
+            opcion = int(entrada)
+            if ((opcion >= minimo) and (opcion <= maximo)):
+                valido = True
+            else:
+                print((((('⚠️  Opción no válida. Por favor elige entre ' + str(minimo)) + ' y ') + str(maximo)) + '.'))
+        except Exception as error:
+            print('⚠️  Error: Debes ingresar un número. Intenta de nuevo.')
     return opcion
 def menuLetras():
     salir = False
