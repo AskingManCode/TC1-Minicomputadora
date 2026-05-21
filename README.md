@@ -19,7 +19,7 @@ Antes de ejecutar el proyecto, asegúrese de tener instalado:
 
 Verificar instalación:
 
-lucia --version
+- lucia --version
 
 ## Cómo ejecutar el proyecto:
 
