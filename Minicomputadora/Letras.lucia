@@ -1,10 +1,10 @@
 // Clase Letras
 // Representa la sección de juegos de Letras
-// Creada por Sebastián Jiménez Arrieta (Firma: SJA) y __
+// Creada por Sebastián Jiménez Arrieta (Firma: SJA) y Franco Acuña
 
-class Letras {
+class Letras { // Firma: SJA
 
-    // PROPIEDADES
+    // PROPIEDADES // Firma: SJA
     let dictABC: dict<string, string> = {};
 
     // CONSTRUCTOR DE LA CLASE
@@ -44,26 +44,20 @@ class Letras {
 
     
     // MÉTODOS Y FUNCIONES DE CLASE (INTERNOS)
-    func getLetras (): void // Muestra todas las letras del diccionario
+    func getListaLetras (): list<string> // Retorna una lista con todas las letras del dicccionario
     {
         // Firma: SJA
-        let acumuladorTexto: string = "";
+        let listaLetras: list<string> = [];
         
-        for (key in dictABC.keys())
+        for (letra in dictABC.keys())
         {
-            acumuladorTexto += key + "  "; 
+            listaLetras.append(letra); 
         }
 
-        print(acumuladorTexto);
+        return listaLetras;
     }
 
-    func getPalabra (llave: string): string // Retorna una palabra buscando por llave
-    {
-        // Firma: SJA
-        return dictABC[llave];
-    }
-
-    func getListaPalabras (): list<string>
+    func getListaPalabras (): list<string> // Retorna una lista con todas las palabras del diccionario
     {
         // Firma: SJA
         let listaPalabras: list<string> = [];
@@ -75,9 +69,59 @@ class Letras {
 
         return listaPalabras;
     }
+
+    func getPalabra (llave: string): string // Retorna una palabra buscando por llave
+    {
+        // Firma: SJA
+        return dictABC[llave];
+    }
+
+    func getPalabraRandom (): string // Retorna una palabra cualquiera del diccionario
+    {
+        // Firma: SJA
+        let listaPalabras: list<string> = [];
+        let numeroRandom: int = 0;
+        let palabraRandom: string = "";
+
+        listaPalabras = this.getListaPalabras();
+        numeroRandom = random(0, len(listaPalabras) - 1);
+        palabraRandom = listaPalabras[numeroRandom];
+        
+        return palabraRandom; 
+    }
+
+    func quitarLetraRandom(palabra: string): list<string> // Función auxiliar que devuelve una lista con una palabra y la letra que le falta
+    {
+        // Firma: SJA
+        let posicionLetra: int = 0;
+        let listaLetraPalabra: list<string> = [];
+        let palabraIncompleta: string = "";
+        let letraQuitada: string = "";
+        
+        posicionLetra = random(0, len(palabra) - 1);
+        letraQuitada = palabra.substring(posicionLetra, posicionLetra + 1);
+        
+        for (let i: int = 0; i < len(palabra); i++)
+        {
+            if (i == posicionLetra)
+            {
+                palabraIncompleta += "_";
+            }
+            else
+            {
+                palabraIncompleta += palabra.substring(i, i + 1);
+            }
+        }
+
+        listaLetraPalabra.append(palabraIncompleta);
+        listaLetraPalabra.append(letraQuitada.lower());
+        
+        return listaLetraPalabra; // [0] Palabra Incompleta, [1] Letra Quitada
+    }
+    
     
     // MÉTODOS Y FUNCIONES PARA MAIN (EXTERNOS)
-    func JugarBosqueLetras (): void 
+    func JugarBosqueLetras (): void // Juego Bosque de letras
     {
         // Firma: SJA
         
@@ -85,6 +129,8 @@ class Letras {
         // int abre la posibilidad de excepciones por conversión de tipos
         let opcion: string = ""; 
         let letraSeleccionada: string = "";
+        let listaLetras: list<string> = [];
+        let acumuladorLetras: string = "";
 
         try
         {
@@ -100,8 +146,16 @@ class Letras {
                     do
                     {
                         print("\nSeleccione una letra del abecedario.");
-                        this.getLetras();
-    
+                        listaLetras = this.getListaLetras();
+
+                        for (letra in listaLetras)
+                        {
+                            acumuladorLetras += letra + "  ";
+                        }
+
+                        // Muetra las letras seguidas
+                        print(acumuladorLetras);
+                        
                         letraSeleccionada = str(input()).capitalize();
     
                         if(!letraSeleccionada.is_alpha())
@@ -137,7 +191,84 @@ class Letras {
         
     }
 
-    func JugarLetraIntrusa(): void {
+    func JugarCompletaPalabra (): void // Juego Completa la Palabra
+    {
+        // Firma: SJA
+
+        // Es mejor usar string para opciones, debido a que usar un 
+        // int abre la posibilidad de excepciones por conversión de tipos
+        let opcion: string = ""; 
+        let palabraRandom: string = "";
+        let contadorPalabrasCompletadas: int = 0;
+        
+        try
+        {
+            do
+            {
+                print("\n=====> Completa la Palabra <=====\n");
+
+                opcion = input("¿Desea Continuar? \n[1] Si \n[2] No \n");
+
+                if (opcion == "1")
+                {
+                    do
+                    {
+                        let letraFaltante: string = "";
+                        let listaLetraPalabra: list<string> = [];
+                        
+                        palabraRandom = this.getPalabraRandom();
+
+                        print("\nIntento #: ${contadorPalabrasCompletadas + 1}");
+                        
+                        print("\nMemoriza la siguiente palabra: >>> ${palabraRandom} <<<");
+
+                        // Para obtener la palabra incompleta y la letra faltante
+                        listaLetraPalabra = this.quitarLetraRandom(palabraRandom);
+                        
+                        print("\nAhora observe: >>> ${listaLetraPalabra[0]} <<<");
+                        
+                        letraFaltante = input("¿Cuál es la letra que falta?").lower();
+                        
+                        if(letraFaltante == listaLetraPalabra[1])
+                        {
+                            print("\n¡Bien hecho!, la letra faltante es la letra: ${listaLetraPalabra[1]}");
+                            print("Y la palabra completa es: ${palabraRandom}");
+                            contadorPalabrasCompletadas++;
+                        }
+                        else 
+                        {
+                            print("\nError: No has ingresado la letra correcta, intenta de nuevo.");
+                        }
+                        
+                    }
+                    while (contadorPalabrasCompletadas != 3);
+
+                    print("\n¡Bien hecho, has ganado!");
+                    
+                    return;
+                }
+                else if (opcion == "2")
+                {
+                    print("\nVolviendo al menú principal...\n");
+                }
+                else 
+                {
+                    print("\nError: No ha seleccionado ninguna de las opciones disponibles, intente de nuevo.\n");
+                }
+
+            } 
+            while (opcion != "2");
+        }
+        catch (Err)
+        {
+            print("\n" + Err);
+        }
+        
+    }
+
+    func JugarLetraIntrusa(): void { // Juego Letra Intrusa
+
+        // Autor Franco Acuña
         print("\n===== LETRA INTRUSA =====");
         print("Se muestran 4 letras. Una no está en orden alfabético.");
         print("Identifica cuál es la letra intrusa.\n");
@@ -186,7 +317,7 @@ class Letras {
         } else {
             print("Sigue practicando.");
         }
-    }
-
+   }
+   
 }
 
