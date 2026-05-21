@@ -27,9 +27,7 @@ lucia --version
 
 * cd TC1-Minicomputadora
 
-* cd Minicomputadora
-
-* lucia main.lucia
+* Ejecutar lucia main.lucia
 
 ## Funcionalidades implementadas
 
