@@ -137,8 +137,10 @@ class Letras { // Firma: SJA
             do 
             {
                 print("\n=====> Bosque de Letras <=====\n");
+
+                print("Este juego consiste en seleccionar una letra del abecedario y seguidamente \nse te mostrará una palabra que empiece con la letra seleccionada.");
                 
-                opcion = input("¿Desea Continuar? \n[1] Si \n[2] No \n");
+                opcion = input("\n¿Desea Continuar? \n[1] Si \n[2] No \n");
             
                 if (opcion == "1")
                 {
@@ -207,7 +209,9 @@ class Letras { // Firma: SJA
             {
                 print("\n=====> Completa la Palabra <=====\n");
 
-                opcion = input("¿Desea Continuar? \n[1] Si \n[2] No \n");
+                print("Este juego consiste en que se te muetre una palabra aleatoria, \nseguidamente se te mostrará la misma palabra pero sin una letra. \nDebes recordar la letra que falta e ingresarla.");
+                
+                opcion = input("\n¿Desea Continuar? \n[1] Si \n[2] No \n");
 
                 if (opcion == "1")
                 {
@@ -243,7 +247,7 @@ class Letras { // Firma: SJA
                     }
                     while (contadorPalabrasCompletadas != 3);
 
-                    print("\n¡Bien hecho, has ganado!");
+                    print("\n¡Bien hecho, has ganado!\n");
                     
                     return;
                 }

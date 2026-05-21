@@ -55,7 +55,8 @@ class Letras:
         try:
             while True:
                 print('\n=====> Bosque de Letras <=====\n')
-                opcion = input('¿Desea Continuar? \n[1] Si \n[2] No \n')
+                print('Este juego consiste en seleccionar una letra del abecedario y seguidamente \nse te mostrará una palabra que empiece con la letra seleccionada.')
+                opcion = input('\n¿Desea Continuar? \n[1] Si \n[2] No \n')
                 if (opcion == '1'):
                     while True:
                         print('\nSeleccione una letra del abecedario.')
@@ -88,13 +89,14 @@ class Letras:
         try:
             while True:
                 print('\n=====> Completa la Palabra <=====\n')
-                opcion = input('¿Desea Continuar? \n[1] Si \n[2] No \n')
+                print('Este juego consiste en que se te muetre una palabra aleatoria, \nseguidamente se te mostrará la misma palabra pero sin una letra. \nDebes recordar la letra que falta e ingresarla/')
+                opcion = input('\n¿Desea Continuar? \n[1] Si \n[2] No \n')
                 if (opcion == '1'):
                     while True:
                         letraFaltante = ''
                         listaLetraPalabra = []
                         palabraRandom = self.getPalabraRandom()
-                        print(('\nIntento #: ' + str(contadorPalabrasCompletadas)))
+                        print(('\nIntento #: ' + str((contadorPalabrasCompletadas + 1))))
                         print((('\nMemoriza la siguiente palabra: >>> ' + str(palabraRandom)) + ' <<<'))
                         listaLetraPalabra = self.quitarLetraRandom(palabraRandom)
                         print((('\nAhora observe: >>> ' + str(listaLetraPalabra[0])) + ' <<<'))
@@ -107,7 +109,7 @@ class Letras:
                             print('\nError: No has ingresado la letra correcta, intenta de nuevo.')
                         if not ((contadorPalabrasCompletadas != 3)):
                             break
-                    print('\n¡Bien hecho, has ganado!')
+                    print('\n¡Bien hecho, has ganado!\n')
                     return
                 elif (opcion == '2'):
                     print('\nVolviendo al menú principal...\n')

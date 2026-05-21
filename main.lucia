@@ -1,0 +1,147 @@
+import "./Minicomputadora/Letras.lucia";
+import "./Minicomputadora/Numeros.Lucia";
+import "./Minicomputadora/Logica.lucia";
+import "./Minicomputadora/Juego.lucia";
+
+// Instancias de clase
+let letras: Letras = Letras();
+let numeros: Numeros = Numeros();
+let logica: Logica = Logica();
+
+func mostrarBienvenida(): void {
+    print("╔══════════════════════════════════════════╗");
+    print("║    ¡Bienvenido a MINICOMPUTADORAS! 🌟    ║");
+    print("║   El mundo de letras, números y lógica   ║");
+    print("╚══════════════════════════════════════════╝");
+    print("");
+    print("¡Hola! Este es tu espacio para aprender jugando.");
+    print("Elige una categoría y ¡a divertirse!");
+    print("");
+}
+
+func mostrarMenuPrincipal(): void {
+    print("══════════════════════════════════════════");
+    print("            📚 MENÚ PRINCIPAL             ");
+    print("══════════════════════════════════════════");
+    print("  1. 🔤 Letras");
+    print("  2. 🔢 Números");
+    print("  3. 🧠 Lógica");
+    print("  4. 🎮 Juegos");
+    print("  5. 🚪 Salir");
+    print("══════════════════════════════════════════");
+}
+
+func mostrarMenuLetras(): void {
+    print("  1. 🌳 Bosque de Letras");
+    print("  2. ✏️  Completa la Palabra");
+    print("  3. 🔍 Letra Intrusa");
+    print("  4. 🔙 Volver");
+}
+
+func mostrarMenuNumeros(): void {
+    print("  1. 🔃 Ordena los Números");
+    print("  2. ⚖️  Mayor y Menor");
+    print("  3. 🎯 Adivina el Número");
+    print("  4. 🔙 Volver");
+}
+
+func mostrarMenuLogica(): void {
+    print("  1. ❓ ¿Cuál Sobra?");
+    print("  2. 🔙 Volver");
+}
+
+func mostrarMenuJuegos(): void {
+    print("  1. 🏆 ¡Qué Grande!");
+    print("  2. 🔙 Volver");
+}
+
+func leerOpcion(minimo: int, maximo: int): int {
+    let opcion: int = -1;
+    let valido: bool = false;
+    while (!valido) {
+        let entrada: string = input("👉 Elige una opción (${minimo}-${maximo}): ");
+        opcion = int(entrada);
+        if (opcion >= minimo && opcion <= maximo) {
+            valido = true;
+        } else {
+            print("⚠️  Opción no válida. Por favor elige entre ${minimo} y ${maximo}.");
+        }
+    }
+    return opcion;
+}
+
+func menuLetras(): void {
+    let salir: bool = false;
+    while (!salir) {
+        mostrarMenuLetras();
+        let opcion: int = leerOpcion(1, 4);
+        switch (opcion) {
+            case 1: letras.JugarBosqueLetras();
+            case 2: letras.JugarCompletaPalabra();
+            case 3: letras.JugarLetraIntrusa();
+            case 4: salir = true;
+        }
+    }
+}
+
+func menuNumeros(): void {
+    let salir: bool = false;
+    while (!salir) {
+        mostrarMenuNumeros();
+        let opcion: int = leerOpcion(1, 4);
+        switch (opcion) {
+            case 1: numeros.OrdenaLosNumeros();
+            case 2: numeros.MayorYMenor();
+            case 3: numeros.JugarAdivinaNumero();
+            case 4: salir = true;
+        }
+    }
+}
+
+func menuLogica(): void {
+    let salir: bool = false;
+    while (!salir) {
+        mostrarMenuLogica();
+        let opcion: int = leerOpcion(1, 2);
+        switch (opcion) {
+            case 1: logica.JugarCualSobra();
+            case 2: salir = true;
+        }
+    }
+}
+
+func menuJuegos(): void {
+    let salir: bool = false;
+    while (!salir) {
+        mostrarMenuJuegos();
+        let opcion: int = leerOpcion(1, 2);
+        switch (opcion) {
+            case 1: queGrande();
+            case 2: salir = true;
+        }
+    }
+}
+
+func mostrarDespedida(): void {
+    print("");
+    print("╔════════════════════════════════════════════╗");
+    print("║           ¡Hasta la próxima! 👋            ║");
+    print("║  Gracias por jugar con MINICOMPUTADORAS 🌟 ║");
+    print("╚════════════════════════════════════════════╝");
+}
+mostrarBienvenida();
+
+let ejecutando: bool = true;
+while (ejecutando) {
+    mostrarMenuPrincipal();
+    let opcion: int = leerOpcion(1, 5);
+    switch (opcion) {
+        case 1: menuLetras();
+        case 2: menuNumeros();
+        case 3: menuLogica();
+        case 4: menuJuegos();
+        case 5: ejecutando = false;
+    }
+}
+
+mostrarDespedida();
