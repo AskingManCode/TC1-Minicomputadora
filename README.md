@@ -4,7 +4,7 @@
 * Sebastián Jiménez Arrieta
 * Franco Acuña Córdoba
 * Esteban Malavasi Zúñiga
-* Joan Barquero Calderón
+* Joel Barquero Calderón
 * Javier Picado Hernández
 
 # Minicomputadora
