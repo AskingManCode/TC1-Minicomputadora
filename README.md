@@ -8,7 +8,31 @@ Integrantes:
 * Javier Picado Hernández
 
 ¿Cómo ejecutar?
+# Minicomputadora
 
+Proyecto desarrollado en Lucia.
+
+## Requisitos
+
+Antes de ejecutar el proyecto, asegúrese de tener instalado:
+
+- Lucia Compiler 1.0.0 o superior
+
+Verificar instalación:
+
+lucia --version
+
+Cómo ejecutar el proyecto:
+
+git clone https://github.com/AskingManCode/TC1-Minicomputadora.git
+
+cd TC1-Minicomputadora
+
+cd Minicomputadora
+
+lucia main.lucia
+
+# 
 
 Funcionalidades implementadas
 
