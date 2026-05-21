@@ -20,3 +20,10 @@ Diagrama de Casos de Uso
 
 
 Mejoras para una versión 2.0
+- Agregar sistema de puntuación global
+- Guardar puntuaciones en archivo
+- Dificultad variable (fácil, medio, difícil)
+- Más rondas en cada juego
+- Juegos multijugador
+- Ranking de mejores puntuaciones
+- Más categorías de juegos
